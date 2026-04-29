@@ -8,6 +8,16 @@ import base64
 import importlib.metadata as metadata
 from flask import Flask, jsonify, request, Response
 
+# Point pySigma's MITRE ATT&CK loader at the locally bundled file so the
+# backend never makes outbound network calls (sigma 2.x+; older versions
+# don't have this module so the ImportError is silently ignored).
+try:
+    import sigma.data.mitre_attack as _mitre_data
+    _mitre_data.set_url("file:///app/mitre_attack/enterprise-attack.json")
+    del _mitre_data
+except (ImportError, AttributeError):
+    pass
+
 from sigma.conversion.base import Backend
 from sigma.plugins import InstalledSigmaPlugins
 from sigma.collection import SigmaCollection

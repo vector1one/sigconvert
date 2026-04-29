@@ -9,6 +9,12 @@ COPY . /app
 # disable the nginx default site so it doesn't conflict on port 8000
 RUN rm -f /etc/nginx/sites-enabled/default
 
+# download MITRE ATT&CK STIX data once before sigma version setup so each
+# venv's diskcache can be seeded from this local file during build
+RUN mkdir -p /app/mitre_attack && \
+    curl -sLo /app/mitre_attack/enterprise-attack.json \
+        "https://github.com/mitre-attack/attack-stix-data/raw/refs/heads/master/enterprise-attack/enterprise-attack.json"
+
 # install backend sigma versions (requires internet at build time)
 RUN cd backend && ./setup-sigma-versions.sh
 

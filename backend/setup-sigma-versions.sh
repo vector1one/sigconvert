@@ -38,5 +38,21 @@ for VERSION in $SIGMA_VERSIONS; do
     # remove unused pyparsing imports in older version, see https://github.com/SigmaHQ/pySigma/pull/289#issuecomment-2410153076
     find ./ -iwholename "*sigma/conversion/base.py" -exec sed -i "/from pyparsing import Set/d" {} +
     find ./ -iwholename "*sigma/exceptions.py" -exec sed -i "/from pyparsing import List/d" {} +
+
+    # seed the pySigma MITRE ATT&CK diskcache from the locally bundled JSON so
+    # the backend never needs network access at runtime (sigma 2.x+ only)
+    .venv/bin/python - <<'PYEOF'
+import sys
+try:
+    import sigma.data.mitre_attack as m
+    m.set_url("file:///app/mitre_attack/enterprise-attack.json")
+    _ = m.mitre_attack_tactics   # triggers cache write via __getattr__
+    print("  MITRE ATT&CK diskcache seeded")
+except (ImportError, AttributeError):
+    pass  # sigma < 2.x does not have this module
+except Exception as e:
+    print(f"  Warning: could not seed MITRE ATT&CK cache: {e}", file=sys.stderr)
+PYEOF
+
     cd ..
 done

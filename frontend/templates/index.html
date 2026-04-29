@@ -5,26 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>sigconverter.io - sigma rule converter</title>
   <!-- Tailwind UI -->
-  <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script>
+  <script src="{{ url_for('static', filename='vendor/js/tailwind.js') }}"></script>
   <!-- FontAwesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='vendor/css/all.min.css') }}">
   <!-- tom-select -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tom-select/2.2.2/css/tom-select.min.css" integrity="sha512-BrNXB6PRnf32ZqstFiYQT/L7aVZ45FGojXbBx8nybK/NBhxFQPHsr36jH11I2YoUaA5UFqTRF14xt3VVMWfCOg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='vendor/css/tom-select.min.css') }}">
   <!-- PrismJS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-atom-dark.min.css" integrity="sha512-GZPS1oCebjx8g/ZkrTTvWirW+4wDkzIsilUQPXcZzuDpDzoH5brM2AojiFjo6ObIWeM68ZDostvdjaS9MNYCTg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='vendor/css/prism-atom-dark.min.css') }}">
   <!-- custom sigconverter.io css -->
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PR1SJ2WGE6"></script>
   <!-- favicon -->
   <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-PR1SJ2WGE6');
-  </script>
 </head>
 
 <body class="bg-sigma-dark">
@@ -189,7 +180,7 @@ level: high</code></pre>
     <div class="bg-sigma-dark border-sigma-blue border rounded-lg shadow-lg w-1/3 p-6 relative">
       <!-- Modal Close Button (Top Right Corner) -->
       <button id="settings-close-btn" class="absolute top-2 right-2 text-sigma-blue hover:text-white text-2xl font-bold">&times;</button>
-      
+
       <!-- Modal Header -->
       <div class="mb-4">
         <h2 class="text-xl text-sigma-blue font-semibold">Settings</h2>
@@ -205,25 +196,25 @@ level: high</code></pre>
   </div>
 
   <!-- tom-select -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/tom-select/2.2.2/js/tom-select.complete.js" integrity="sha512-KfTOBVJv8qnV1b+2tsbTLepS7+RAgmVV0Odk6cj1eHxbR8WFX99gwIWOutwFAUlsve3FaGG3VxoPWWLRnehX1w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="{{ url_for('static', filename='vendor/js/tom-select.complete.js') }}"></script>
   <!-- PrismJS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/prism.min.js" integrity="sha512-RDQSW3KoqJMiX0L/UBgwBmH1EmRYp8LBOiLaA8rBHIy+7OGP/7Gxg8vbt8wG4ZYd29P0Fnoq6+LOytCqx3cyoQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-yaml.min.js" integrity="sha512-6O/PZimM3TD1NN3yrazePA4AbZrPcwt1QCGJrVY7WoHDJROZFc9TlBvIKMe+QfqgcslW4lQeBzNJEJvIMC8WhA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-splunk-spl.min.js" integrity="sha512-RLhcqVEXOdbZPCJ8YG5fZDRIK3nXiS6erMtnzLyaKzS17H7mRi/9a1o+s2TM2XlWk4Nk7E579LyL63R7nUlrgQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-bash.min.js" integrity="sha512-ZqfG//sXQwAA7DOArFJyMmZQ3knKe+0ft3tPQZPvDPJR04IatmhVO5pTazVV+fLVDYSy28PhoBeUj5wxGRiGAA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-kusto.min.js" integrity="sha512-94ETWqaOsWjGNfN6BExGdnyVP7ACudwU7iApdZJHm97/NY7jQ9mWcJRcQDmSgpVhV1kEJzJnlJA4/Qcjv/GGgA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js" integrity="sha512-sijCOJblSCXYYmXdwvqV0tak8QJW5iy2yLB1wAbbLc3OOIueqymizRFWUS/mwKctnzPKpNdPJV3aK1zlDMJmXQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="{{ url_for('static', filename='vendor/js/prism.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendor/js/prism-yaml.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendor/js/prism-splunk-spl.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendor/js/prism-bash.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendor/js/prism-kusto.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendor/js/prism-sql.min.js') }}"></script>
   <!-- sigconverter.io custom js -->
   <script src="{{ url_for('static', filename='js/index.js') }}"></script>
   <!-- CodeJar init -->
   <script type="module">
     import {
       CodeJar
-    } from 'https://medv.io/codejar/codejar.js'
+    } from '{{ url_for("static", filename="vendor/js/codejar.js") }}'
     import {
       withLineNumbers
-    } from 'https://medv.io/codejar/linenumbers.js'
-    
+    } from '{{ url_for("static", filename="vendor/js/linenumbers.js") }}'
+
     window.sigmaJar = CodeJar(document.querySelector('#rule-code'), el => Prism.highlightElement(el))
     sigmaJar.onUpdate(sigmaRule => {
       if (sigmaRule.length > 0) {

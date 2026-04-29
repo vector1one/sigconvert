@@ -1,4 +1,4 @@
 #!/bin/sh
 
 cd backend/ && ./launch-backends.sh && cd ..
-cd frontend && uv run frontend.py
+cd frontend && .venv/bin/python frontend.py

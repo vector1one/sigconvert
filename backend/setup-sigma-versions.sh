@@ -39,14 +39,13 @@ for VERSION in $SIGMA_VERSIONS; do
     find ./ -iwholename "*sigma/conversion/base.py" -exec sed -i "/from pyparsing import Set/d" {} +
     find ./ -iwholename "*sigma/exceptions.py" -exec sed -i "/from pyparsing import List/d" {} +
 
-    # seed the pySigma MITRE ATT&CK diskcache from the locally bundled JSON so
-    # the backend never needs network access at runtime (sigma 2.x+ only)
+    # seed the pySigma MITRE ATT&CK diskcache during build (internet available here)
+    # so the backend never needs network access at runtime (sigma 2.x+ only)
     .venv/bin/python - <<'PYEOF'
 import sys
 try:
     import sigma.data.mitre_attack as m
-    m.set_url("file:///app/mitre_attack/enterprise-attack.json")
-    _ = m.mitre_attack_tactics   # triggers cache write via __getattr__
+    _ = m.mitre_attack_tactics   # downloads from GitHub and writes to diskcache
     print("  MITRE ATT&CK diskcache seeded")
 except (ImportError, AttributeError):
     pass  # sigma < 2.x does not have this module

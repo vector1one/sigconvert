@@ -1,4 +1,7 @@
 #!/bin/sh
 
+# start all sigma backend instances in the background
 cd backend/ && ./launch-backends.sh && cd ..
-cd frontend && uv run frontend.py
+
+# serve static files and proxy API calls via nginx (foreground, keeps container alive)
+nginx -g "daemon off;"
